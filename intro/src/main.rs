@@ -2,23 +2,29 @@ use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
 fn main() {
-    let guess = rand::rng().random_range(1..=40);
+    println!("Welcome to my guessing game");
     loop {
-        println!("The correct answer is: {guess}");
-        println!("Enter a desired number");
-        let mut num = String::new();
+        println!("Enter a valid number");
+        let correct = rand::rng().random_range(1..=20);
+        println!("{correct}");
+
+        let mut guess = String::new();
         io::stdin()
-            .read_line(&mut num)
-            .expect("Error while reading line");
-        let num2: i32 = num.trim().parse().expect("Error while reading line");
-        let message = match num2.cmp(&guess) {
-            Ordering::Greater => "Too High",
-            Ordering::Less => "Too Low",
+            .read_line(&mut guess)
+            .expect("Error reading line");
+
+        let guess: i32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_e) => continue,
+        };
+        println!("You guessed : {guess}");
+        match guess.cmp(&correct) {
+            Ordering::Greater => println!("Too High"),
+            Ordering::Less => println!("Too Low"),
             Ordering::Equal => {
-                println!("You have got it correct");
+                println!("You have guessd correct");
                 break;
             }
-        };
-        println!("Here are the results: {message}");
+        }
     }
 }
