@@ -1,40 +1,37 @@
 use std::fmt;
 #[derive(Debug)]
+
+//enum
 enum Gem {
     Diamond,
     Sapphire,
     Ruby,
     Topaz,
     Onyx,
-    Jade,
 }
 
 impl fmt::Display for Gem {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
-            Gem::Diamond => write!(f, "diamond"),
-            Gem::Sapphire => write!(f, "sapphire"),
-            Gem::Ruby => write!(f, "ruby"),
-            Gem::Topaz => write!(f, "topaz"),
-            Gem::Onyx => write!(f, "onyx"),
-            Gem::Jade => write!(f, "jade"),
+            Gem::Diamond => write!(f, "Diamond"),
+            Gem::Sapphire => write!(f, "Sapphire"),
+            Gem::Ruby => write!(f, "Ruby"),
+            Gem::Topaz => write!(f, "Topaz"),
+            Gem::Onyx => write!(f, "Onyx"),
         }
     }
 }
-
 fn main() {
+    //Tuple
     let gems = [
-        (Gem::Onyx, 25.00),
-        (Gem::Diamond, 60.00),
-        (Gem::Onyx, 100.00),
-        (Gem::Ruby, 100.00),
+        (Gem::Diamond, 25.00),
+        (Gem::Sapphire, 90.00),
+        (Gem::Ruby, 40.00),
+        (Gem::Topaz, 60.00),
+        (Gem::Onyx, 30.00),
     ];
 
     for gem in gems {
-        println!(
-            "This {:?} is worth {}",
-            gem.0.to_string().to_uppercase(),
-            gem.1
-        );
+        println!("This {} is worth: {}", gem.0, gem.1);
     }
 }
